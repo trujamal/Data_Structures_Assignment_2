@@ -1,6 +1,6 @@
 #include <iostream>
 #include "PhysVec.h"
-#include <vector>
+
 using std::cout;
 using std::endl;
 
@@ -8,9 +8,15 @@ using std::endl;
 // vectors for the class to use in its calculation's.
 //
 
+void TestingPrintVecs();
+
 int main() {
 
- // create some vectors - Note c++ 11 uniform initilization!
+    // Testing the PrintVecs Function
+
+    TestingPrintVecs();
+
+    // create some vectors - Note c++ 11 uniform initilization!
  std::vector<int> lhs = {3,2,1};
  std::vector<int> rhs = {1,2,3};
  std::vector<int> newrhs = {4,2,1};
@@ -62,4 +68,11 @@ int main() {
  dotProduct = myphysvec2.calculateDotProduct(mybigvec1);
 
   return 0;
+}
+
+void TestingPrintVecs() {
+
+    std :: vector<int> myVector {};
+
+
 }

@@ -1,7 +1,7 @@
 /**
  * Purpose of the program is to use to the PhysVec class and implement the functions that are given
  * @author Jamal Rasool, Gese Rocha, John Daloni, Fredy Martinez
- * @version 1.0
+ * @version 1.1
  * @date 1/25/18
  * @
  */
@@ -69,6 +69,7 @@ PhysVec PhysVec :: operator+ (const PhysVec  & rhs) const {
 
     for(c; c!= t.end(); ++c) {
         *c = *a + *b;
+
         ++b;
         ++a;
     }
@@ -110,9 +111,33 @@ std::vector<int> &PhysVec :: get_a_vec_() {
 
 int PhysVec::calculateDotProduct(const PhysVec & rhs) const {
     int product = 0;
-    for (int i = 0; i <= rhs.a_vec_.size() -1;i ++) {
+
+    /*  Working Solution Before 2:32 PM on Friday, January 26
+     *  1 2 5 4 2 1 5 4 6
+     *  Dot product is 34
+     *  Dot product is -55
+     *  for (int i = 0; i <= rhs.a_vec_.size() -1;i ++) {
         product += rhs.a_vec_[i] * this->a_vec_[i];
     }
+     */
+
+    std :: vector<int> :: const_iterator DefaultIterator;
+    std :: vector<int> :: const_iterator b;
+
+    b = this->a_vec_.begin();
+
+
+    // this is the {4,2,1}
+    // rhs is the {5,4,6}
+
+    for(DefaultIterator = rhs.a_vec_.begin(); DefaultIterator != rhs.a_vec_.end(); ++DefaultIterator) {
+
+        product += *DefaultIterator * *b;
+        ++b;
+
+
+    }
+
     return product;
 }
 
@@ -143,7 +168,9 @@ PhysVec &PhysVec::operator=(const PhysVec &rhs) {
     if(this != &rhs) {
         std :: vector<int> :: const_iterator defaultiterator;
         std :: vector<int> :: iterator lhs;
+
         lhs = this->a_vec_.begin();
+
         for(defaultiterator = rhs.a_vec_.begin(); defaultiterator != rhs.a_vec_.end(); ++defaultiterator) {
             *lhs = *defaultiterator;
             lhs++;
