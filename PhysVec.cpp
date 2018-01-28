@@ -7,7 +7,6 @@
  */
 
 
-
 #include <iostream>
 #include <vector>
 #include "PhysVec.h"
@@ -57,7 +56,7 @@ PhysVec PhysVec :: operator+ (const PhysVec  & rhs) const {
     std :: vector <int> :: const_iterator b;
     std :: vector <int> :: iterator c;
 
-    a = rhs.a_vec_.begin();
+    a = rhs.a_vec_.begin(); // Setting begining
     b = this->a_vec_.begin();
 
     std :: vector<int> t;
@@ -67,11 +66,16 @@ PhysVec PhysVec :: operator+ (const PhysVec  & rhs) const {
     t.resize(size);
     c = t.begin();
 
-    for(c; c!= t.end(); ++c) {
-        *c = *a + *b;
+    // Testing the vector addition, by going through and dereferencing all of the vectors.
+    try {
+        for(c; c!= t.end(); ++c) {
+            *c = *a + *b;
 
-        ++b;
-        ++a;
+            ++b;
+            ++a;
+        }
+    }catch (std::exception e) {
+        throw e; // Throwing the exception error for any error.
     }
 
     PhysVec temporary_object(t);
@@ -112,30 +116,15 @@ std::vector<int> &PhysVec :: get_a_vec_() {
 int PhysVec::calculateDotProduct(const PhysVec & rhs) const {
     int product = 0;
 
-    /*  Working Solution Before 2:32 PM on Friday, January 26
-     *  1 2 5 4 2 1 5 4 6
-     *  Dot product is 34
-     *  Dot product is -55
-     *  for (int i = 0; i <= rhs.a_vec_.size() -1;i ++) {
-        product += rhs.a_vec_[i] * this->a_vec_[i];
-    }
-     */
-
     std :: vector<int> :: const_iterator DefaultIterator;
     std :: vector<int> :: const_iterator b;
 
     b = this->a_vec_.begin();
 
-
-    // this is the {4,2,1}
-    // rhs is the {5,4,6}
-
     for(DefaultIterator = rhs.a_vec_.begin(); DefaultIterator != rhs.a_vec_.end(); ++DefaultIterator) {
 
         product += *DefaultIterator * *b;
         ++b;
-
-
     }
 
     return product;
@@ -166,7 +155,8 @@ void PhysVec::printVecs() const {
 
 PhysVec &PhysVec::operator=(const PhysVec &rhs) {
     if(this != &rhs) {
-        std :: vector<int> :: const_iterator defaultiterator;
+        std :: vector<int> :: const_iterator defaultiterator; // Acting as the right hand side of the progression, will
+        // not go up
         std :: vector<int> :: iterator lhs;
 
         lhs = this->a_vec_.begin();
@@ -175,12 +165,13 @@ PhysVec &PhysVec::operator=(const PhysVec &rhs) {
             *lhs = *defaultiterator;
             lhs++;
         }
+
         /*
          * Original function
          * copy(rhs.a_vec_.begin(), rhs.a_vec_.end(), this->a_vec_.begin());
          */
     }
-    return *this;
+    return *this; // returning dereference this variable
 }
 
 
