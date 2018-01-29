@@ -1,10 +1,10 @@
 /**
- * @author Jamal Rasool
- * @version 1.1
- * @brief This program is designed to go through and test all of the constructors / functions that are available in the
- * PhysVec header file and driver file.
- * @date January 28th, 2017
- */
+* @author Jamal Rasool
+* @version 1.1
+* @brief This program is designed to go through and test all of the constructors / functions that are available in the
+* PhysVec header file and driver file.
+* @date January 28th, 2017
+*/
 
 #include <iostream>
 #include "PhysVec.h"
@@ -168,6 +168,29 @@ void TestingCopyConstructor() {
     happy.printVecs();
     std::cout << "\nTest Six Complete!" << std::endl;
 }
+/**
+ * Function Name: TestingGetVecConstructor
+ * This function is designed to return a specific vector and also asign it to a temproary value, similar to the copy
+ * constructor due to it returning an a_vec object.
+ */
+void TestingGetVecConstructor() {
+    std::cout << "\nTest Seven (Testing Get Constructor):" << std::endl;
+    std::vector<int> SampleVector = {2,1,3};
+    try {
+        PhysVec Test2(SampleVector);
+        PhysVec CopyOfTest2 = PhysVec(Test2.get_a_vec_());
+
+        std :: cout << "Original: ";
+        Test2.printVecs();
+        std :: cout << "\nResult: ";
+        CopyOfTest2.printVecs();
+
+    } catch (std :: exception e) {
+        throw e;
+    }
+
+    std::cout << "\nTest Seven Complete!" << std::endl;
+}
 
 /**
  * Function Name: main
@@ -189,6 +212,8 @@ int main() {
     TestingComplexDotProduct();
     // Testing Copy Constructor
     TestingCopyConstructor();
+    // Testing get_vec Constructor
+    TestingGetVecConstructor();
 
     return 0;
 }

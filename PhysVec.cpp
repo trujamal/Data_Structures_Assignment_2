@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <vector>
-#include "PhysVec.h"
+#include "../Data Structures Assignment 2/PhysVec.h"
 
 /**
  * Function Name: PhysVec
@@ -56,7 +56,7 @@ PhysVec PhysVec::operator+(const PhysVec &rhs) const {
     std::vector<int>::const_iterator b;
     std::vector<int>::iterator c;
 
-    a = rhs.a_vec_.begin(); // Setting begining
+    a = rhs.a_vec_.begin(); // Setting beginning
     b = this->a_vec_.begin();
 
     std::vector<int> t;
@@ -64,11 +64,10 @@ PhysVec PhysVec::operator+(const PhysVec &rhs) const {
     int size = this->a_vec_.size();
 
     t.resize(size);
-    c = t.begin();
 
     // Testing the vector addition, by going through and dereferencing all of the vectors.
     try {
-        for (c; c != t.end(); ++c) {
+        for (c = t.begin(); c != t.end(); ++c) {
             *c = *a + *b;
 
             ++b;

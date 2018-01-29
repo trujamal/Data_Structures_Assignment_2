@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9)
-project(Data_Structures_Assignment_2)
+project(phys_vec)
 
 set(CMAKE_CXX_STANDARD 11)
 
